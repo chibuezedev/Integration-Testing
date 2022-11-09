@@ -36,5 +36,20 @@ describe('/api/genre', () => {
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('name', genre.name)
         })
+
+        it('should return a 404 if there is an error', async ()=> {
+        
+                const res = await request(server).get('/api/genres/1')
+    
+                expect(res.status).toBe(404)
+            })
+    })
+    
+    describe('POST /', () => {
+     it('should return 401 if client is not logged in', async() => {
+        const res = await (await request(server).post('/api/genres')).send({name: 'genre1'})
+
+        expect(res.status).toBe(401)
+     })
     })
 })
