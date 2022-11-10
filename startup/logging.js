@@ -4,7 +4,6 @@ require('express-async-errors');
 
 module.exports = function() {
   winston.handleExceptions(
-    new winston.transports.Console({ colorize: true, prettyPrint: true }),
     new winston.transports.File({ filename: 'uncaughtExceptions.log' }));
   
   process.on('unhandledRejection', (ex) => {
@@ -13,7 +12,7 @@ module.exports = function() {
   
   winston.add(winston.transports.File, { filename: 'logfile.log' });
   // winston.add(winston.transports.MongoDB, { 
-  //   db: 'mongodb+srv://Paul:y9DSqyzD8uiQ9n8g@node-class.iz8y6zp.mongodb.net/vidly',
+  //   db: 'mongodb://localhost/vidly',
   //   level: 'info'
   // });  
 }
